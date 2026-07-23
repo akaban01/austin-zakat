@@ -8,37 +8,47 @@ const steps = [
   {
     title: "1. Community members give zakat, sadaqah, and Zakat al-Fitr",
     description:
-      "Individuals and families across Greater Austin contribute their obligatory zakat, along with sadaqah and seasonal Zakat al-Fitr, directly to GAMRC or through a partner masjid.",
+      "Individuals and families across Greater Austin contribute their obligatory zakat, along with sadaqah and seasonal Zakat al-Fitr, directly to a partner masjid.",
   },
   {
     title: "2. Funds are pooled across the committee",
     description:
-      "Rather than each masjid collecting and distributing zakat in isolation, GAMRC unites contributions from across Austin, Round Rock, Cedar Park, Pflugerville, Georgetown, Leander, and Lake Travis, so help can reach whoever needs it most — not just wherever the money happened to land.",
+      "Rather than each masjid collecting and distributing zakat in isolation, GAMRC unites contributions from nine masajid across Austin, Cedar Park, Round Rock, Leander, Pflugerville, Manor, Georgetown, Kyle, and Buda, so help can reach whoever needs it most.",
   },
   {
-    title: "3. Applications are reviewed by trusted volunteers",
+    title: "3. Applications are reviewed by a GAMRC representative",
     description:
-      "Families in need submit an application, which is reviewed by volunteer coordinators at their nearest partner masjid. These are neighbors and community members who understand local circumstances and can verify need with care and discretion.",
+      "Families in need submit one shared application along with supporting documents. A GAMRC representative at their nearest partner masjid follows up with a short interview before a decision is made.",
   },
   {
     title: "4. Assistance is distributed quickly and directly",
     description:
-      "Once a request is verified, funds are directed to the specific need — rent, a utility bill, groceries, or a medical expense — so families get relief without unnecessary delay.",
+      "Checks are sent directly to the landlord or utility provider rather than as cash, so relief reaches the actual need without delay.",
   },
   {
     title: "5. Ongoing cases receive continued support",
     description:
-      "Some situations, like widows, orphans, and single mothers rebuilding after hardship, need more than a single gift. GAMRC and its partner masajid follow up to provide continued support where it's needed.",
+      "Support for a family typically lasts 6 to 24 months depending on their situation — long enough to help them stand on their own, not just a single gift.",
   },
 ];
 
 const eligibility = [
-  "Facing rent, utility, or eviction-related hardship",
+  "Have an address in Austin, Cedar Park, Round Rock, Leander, Pflugerville, Manor, Georgetown, Kyle, or Buda",
+  "Facing rent, utility, or eviction-related hardship — reach out before a notice is issued",
   "In need of food assistance or Ramadan support",
-  "A widow, orphan, or single parent navigating hardship",
-  "Affected by domestic violence and in need of a safe transition",
+  "A single mother, widow, divorced, or separated woman (apply through GAMRC's sister organization, MCSS)",
   "Facing an urgent medical expense or unmanageable debt",
 ];
+
+const costs = [
+  { label: "Rent", amount: 1500 },
+  { label: "Electricity", amount: 200 },
+  { label: "Water", amount: 100 },
+  { label: "Clothing", amount: 100 },
+  { label: "Grocery / Food", amount: 1000 },
+  { label: "Education (annual $8,000)", amount: 667 },
+];
+const monthlyTotal = costs.reduce((sum, c) => sum + c.amount, 0);
 ---
 
 <BaseLayout
@@ -48,7 +58,7 @@ const eligibility = [
   <PageHero
     eyebrow="How It Works"
     title="A unified committee, so zakat moves faster"
-    description="GAMRC was formed in 2014 to coordinate zakat work across Greater Austin so that giving and receiving happen through one trusted, transparent process — not scattered across disconnected efforts."
+    description="GAMRC coordinates zakat work across Greater Austin's masajid so that giving and receiving happen through one trusted process — one application, one committee, one decision."
   />
 
   <section class="mx-auto max-w-4xl px-5 py-20">
@@ -64,7 +74,47 @@ const eligibility = [
     </div>
   </section>
 
-  <section class="bg-emerald-50/60 py-20">
+  <section id="example-case" class="bg-emerald-50/60 py-20">
+    <div class="mx-auto max-w-4xl px-5">
+      <SectionHeading eyebrow="A Real Example" title="How much it takes to support a family in Austin" />
+      <p class="prose-body mt-5 max-w-2xl text-sm leading-relaxed text-emerald-950/70">
+        Austin is an amazing city, but it costs a lot to live here. This burden falls especially
+        hard on single mothers and refugee families. A donation of $200&ndash;$300 falls short of
+        what most families need to reach lasting stability — here's what one household's minimum
+        monthly costs can look like.
+      </p>
+      <div class="mt-8 overflow-hidden rounded-2xl border border-emerald-900/8 bg-white shadow-sm shadow-emerald-950/5">
+        <table class="w-full text-sm">
+          <thead class="bg-emerald-800 text-white">
+            <tr>
+              <th class="px-5 py-3 text-left font-medium">Expense</th>
+              <th class="px-5 py-3 text-right font-medium">Monthly Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {costs.map((c, i) => (
+              <tr class:list={[i % 2 === 0 ? "bg-white" : "bg-emerald-50/50"]}>
+                <td class="px-5 py-2.5 text-emerald-950/80">{c.label}</td>
+                <td class="px-5 py-2.5 text-right text-emerald-950/80">${c.amount.toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot class="bg-gold-100 font-semibold text-emerald-950">
+            <tr>
+              <td class="px-5 py-3">Total Monthly</td>
+              <td class="px-5 py-3 text-right">${monthlyTotal.toLocaleString()}</td>
+            </tr>
+            <tr>
+              <td class="px-5 py-3">Total Annual</td>
+              <td class="px-5 py-3 text-right">${(monthlyTotal * 12).toLocaleString()}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
     <div class="mx-auto max-w-4xl px-5">
       <SectionHeading eyebrow="Who We Help" title="Support for families across Greater Austin" />
       <ul class="prose-body mt-8 space-y-3">

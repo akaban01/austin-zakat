@@ -2,13 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-
-const masajid = [
-  { name: "Islamic Center of Greater Austin (ICGA)", href: "https://austinmosque.org/" },
-  { name: "Nueces Mosque", href: "https://www.nuecesmosque.com/" },
-  { name: "Islamic Center of Brushy Creek (ICBC)", href: "https://icbrushycreek.org/" },
-  { name: "Islamic Center of Round Rock (ICRR)", href: "https://roundrockmasjid.org/" },
-];
+import { partnerMasajid, otherPartnerMasajid } from "../data/masajid";
 ---
 
 <BaseLayout
@@ -41,22 +35,27 @@ const masajid = [
       </a>
 
       <a
-        href="https://www.facebook.com/donate/906668713698002/"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/faq"
         class="flex items-start gap-4 rounded-2xl border border-emerald-900/8 bg-white p-6 shadow-sm shadow-emerald-950/5 transition hover:-translate-y-0.5 hover:shadow-md"
       >
         <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M15 8h-2a2 2 0 0 0-2 2v2H9v3h2v6h3v-6h2.2l.8-3H14v-1.5A.5.5 0 0 1 14.5 9H15Z" stroke-linejoin="round" />
+            <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 2-2.5 3M12 17h.01" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="12" cy="12" r="9" />
           </svg>
         </span>
         <span>
-          <span class="block font-display text-lg tracking-wide text-emerald-950">Facebook</span>
-          <span class="mt-1 block text-sm text-emerald-950/70">Message us or give online</span>
+          <span class="block font-display text-lg tracking-wide text-emerald-950">Common Questions</span>
+          <span class="mt-1 block text-sm text-emerald-950/70">Read our FAQ before reaching out</span>
         </span>
       </a>
     </div>
+
+    <p class="prose-body mt-8 text-sm leading-relaxed text-emerald-950/60">
+      GAMRC is not a standalone nonprofit — it's a unified committee of the local Austin masajid,
+      and doesn't hold its own EIN. Donations and assistance are handled through the partner
+      masjid network below.
+    </p>
   </section>
 
   <section class="bg-emerald-50/60 py-20">
@@ -67,7 +66,7 @@ const masajid = [
         out to whichever is closest to you to begin.
       </p>
       <div class="mt-8 grid gap-4 sm:grid-cols-2">
-        {masajid.map((m) => (
+        {partnerMasajid.map((m) => (
           <a
             href={m.href}
             target="_blank"
@@ -81,6 +80,9 @@ const masajid = [
           </a>
         ))}
       </div>
+      <p class="prose-body mt-4 text-xs text-emerald-950/50">
+        GAMRC's committee also includes {otherPartnerMasajid.join(", ")}.
+      </p>
     </div>
   </section>
 </BaseLayout>

@@ -4,87 +4,107 @@ import PageHero from "../components/PageHero.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Button from "../components/Button.astro";
 
-const masajid = [
-  { name: "Islamic Center of Greater Austin (ICGA)", href: "https://austinmosque.org/services/financial-assistance/" },
-  { name: "Nueces Mosque", href: "https://www.nuecesmosque.com/nueces-services/humanitarian-assistance" },
-  { name: "Islamic Center of Brushy Creek (ICBC)", href: "https://icbrushycreek.org/programs/community/" },
-  { name: "Islamic Center of Round Rock (ICRR)", href: "https://roundrockmasjid.org/" },
+const requiredDocuments = [
+  "Government ID for the applicant and their spouse",
+  "Lease agreement or mortgage statement (original, PDF format)",
+  "Most recent electric bill, original from the utility company (PDF format)",
+  "Three most recent bank statements",
+  "Three most recent paystubs from the employer",
 ];
 
-const whatToExpect = [
-  {
-    title: "Reach out to your nearest partner masjid",
-    description:
-      "Applications are received and reviewed by volunteer coordinators at the partner masjid closest to you, listed below. They know their community and can move quickly.",
-  },
-  {
-    title: "Share your situation",
-    description:
-      "Be ready to briefly describe what you're facing — rent, utilities, food, a medical bill, or another urgent need — so your request can be routed appropriately.",
-  },
-  {
-    title: "A coordinator follows up",
-    description:
-      "A volunteer will follow up to verify your request and determine what support is available, with discretion and respect for your privacy.",
-  },
-  {
-    title: "Assistance is arranged directly",
-    description:
-      "Whenever possible, funds are sent directly to the landlord, utility company, or provider — so help reaches the actual need.",
-  },
+const goodToKnow = [
+  "Applicants must have an address in Austin, Cedar Park, Round Rock, Leander, Pflugerville, Manor, Georgetown, Kyle, or Buda — the committee cannot help outside these cities.",
+  "You must have an established residence in one of these cities; the committee does not cover hotel or motel stays.",
+  "The committee doesn't pay cash, other than a small amount for Zakat al-Fitr — checks are paid directly to the rent or utility provider.",
+  "Travel costs (flights, buses, trains), Uber, and car rentals are not covered.",
+  "Reach out before an eviction or disconnection notice is issued — the committee generally can't help once one has already been issued.",
+  "Broken residential leases are only considered with a valid reason.",
+  "Apply on the first day of the month to be considered for that month's assistance.",
+  "Priority is given to regular attendees of GAMRC's partner masajid.",
 ];
 ---
 
 <BaseLayout
   title="Apply for Help"
-  description="If you or your family need help with rent, utilities, food, or another urgent need, reach out to a GAMRC partner masjid in Greater Austin to start your application."
+  description="If you or your family need help with rent, utilities, food, or another urgent need, apply for assistance through GAMRC — one application, one committee, one decision."
 >
   <PageHero
     eyebrow="Apply for Help"
     title="You don't have to face this alone"
-    description="If your family is struggling with rent, utilities, food, or an urgent medical need, GAMRC and our partner masajid are here to help — with dignity and discretion."
+    description="All of GAMRC's partner masajid and charitable organizations work from one shared application — one application, one committee, one decision."
   />
 
   <section class="mx-auto max-w-4xl px-5 py-20">
-    <SectionHeading eyebrow="What to Expect" title="How an application works" />
-    <div class="mt-8 space-y-6">
-      {whatToExpect.map((item, i) => (
-        <div class="flex gap-5">
-          <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-700 text-sm font-semibold text-gold-100">
-            {i + 1}
-          </span>
-          <div>
-            <h3 class="font-display text-lg tracking-wide text-emerald-950">{item.title}</h3>
-            <p class="prose-body mt-1 text-sm leading-relaxed text-emerald-950/70">{item.description}</p>
-          </div>
-        </div>
-      ))}
+    <SectionHeading eyebrow="Before You Apply" title="What to know before you start" />
+    <div class="prose-body mt-6 space-y-4 text-sm leading-relaxed text-emerald-950/75">
+      <p>
+        Only the male head of household needs to submit the application. If the applicant is a
+        single mother, widowed, divorced, or separated, please apply instead through GAMRC's
+        sister organization, MCSS —
+        <a href="https://www.mcssaustin.org/get-help/" target="_blank" rel="noopener noreferrer" class="font-medium text-emerald-700 underline underline-offset-2">
+          request help here
+        </a>. For electric bill assistance specifically, MCSS also runs a
+        <a href="https://www.mcssaustin.org/utility-bill-assistance/" target="_blank" rel="noopener noreferrer" class="font-medium text-emerald-700 underline underline-offset-2">
+          dedicated utility bill program
+        </a>.
+      </p>
+      <p>
+        Families can be helped more than once if continued need is shown. New refugees still
+        receiving support from a refugee resettlement organization are asked not to apply, except
+        to request furniture.
+      </p>
     </div>
+
+    <div class="mt-10 grid gap-8 md:grid-cols-2">
+      <div>
+        <h3 class="font-display text-lg tracking-wide text-emerald-950">Documents you'll need</h3>
+        <ul class="prose-body mt-4 space-y-3">
+          {requiredDocuments.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-emerald-950/80">
+              <svg class="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p class="prose-body mt-4 text-sm leading-relaxed text-emerald-950/70">
+          After documents are submitted, a GAMRC representative will follow up for a short
+          interview before a decision is made.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-display text-lg tracking-wide text-emerald-950">Good to know</h3>
+        <ul class="prose-body mt-4 space-y-3">
+          {goodToKnow.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-emerald-950/80">
+              <svg class="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <p class="prose-body mt-10 text-sm leading-relaxed text-emerald-950/70">
+      GAMRC also coordinates with World Relief, AFSSA, MCSS, HIAS, ICNA, Catholic Charities, TXOR,
+      and Amanah to make sure families are connected with the right resource.
+    </p>
   </section>
 
   <section class="bg-emerald-50/60 py-20">
-    <div class="mx-auto max-w-4xl px-5">
-      <SectionHeading eyebrow="Get Started" title="Contact a partner masjid near you" />
-      <div class="mt-8 grid gap-4 sm:grid-cols-2">
-        {masajid.map((m) => (
-          <a
-            href={m.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-between rounded-2xl border border-emerald-900/8 bg-white p-5 shadow-sm shadow-emerald-950/5 transition hover:-translate-y-0.5 hover:shadow-md"
-          >
-            <span class="font-medium text-emerald-950">{m.name}</span>
-            <svg class="h-4 w-4 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
-        ))}
-      </div>
-      <p class="prose-body mt-8 text-sm text-emerald-950/60">
-        Not sure which masjid to reach out to, or don't see one near you? Send us a message on
-        our <a href="/contact" class="font-medium text-emerald-700 underline underline-offset-2">Contact page</a>
-        and we'll help point you in the right direction.
+    <div class="mx-auto max-w-2xl px-5 text-center">
+      <SectionHeading eyebrow="Get Started" title="Ready to apply?" align="center" />
+      <p class="prose-body mx-auto mt-4 max-w-xl text-emerald-950/70">
+        Submit the application when you're ready — a coordinator will follow up with next steps.
       </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button href="https://austinmosque.org/client-application-for-assistance/" external>Start Your Application</Button>
+        <Button href="/contact" variant="ghost">Ask a Question First</Button>
+      </div>
     </div>
   </section>
 </BaseLayout>

@@ -33,22 +33,26 @@ One-time repo setup required:
    - Value: `<github-username>.github.io`
 4. Once DNS resolves, enable **Enforce HTTPS** in the Pages settings.
 
-## Content notes — please review before launch
+## Content notes
 
-Some content could not be verified from the live site directly (network access to
-`austinzakat.org` was unavailable while building this redesign), so it was reconstructed from
-public search results about GAMRC and its partner masajid. Please double-check before launch:
+Content was cross-checked directly against the live `austinzakat.org` site (its React bundle
+embeds the current copy, payment details, and application rules) and updated accordingly:
 
-- **`src/pages/contact.astro`** — the email address `info@austinzakat.org` is a placeholder.
-  Replace it with the real inbox you want inquiries sent to.
-- **`src/pages/pay-zakat.astro`** — Zelle, Venmo, check, and stock transfer instructions
-  intentionally omit account details/handles; they direct visitors to contact you instead.
-  Add real details once confirmed, or wire up a donation processor.
-- **`src/pages/apply-for-help.astro`** and **`src/pages/contact.astro`** link out to partner
-  masjid websites (ICGA, Nueces Mosque, ICBC, ICRR) rather than an in-house application form,
-  since the original application workflow wasn't accessible to reconstruct exactly.
-- The Facebook donate link (`facebook.com/donate/906668713698002`) was found via public search
-  and should be confirmed as current.
+- **`src/pages/pay-zakat.astro`** — Zelle (`accountant@austinmosque.org`), Venmo (`@icgamanor`),
+  the check mailing address, PayPal Giving Fund, Feeling Blessed, Madina Apps, and company
+  matching (Benevity / AustinCares) are all real details pulled from the live site, plus direct
+  donation links for each partner masjid.
+- **`src/pages/apply-for-help.astro`** — uses the real application link
+  (`https://austinmosque.org/client-application-for-assistance/`), required documents, eligible
+  cities, and other eligibility rules from the live site.
+- The previously-guessed Facebook donate link was removed — it doesn't appear anywhere on the
+  live site and couldn't be verified.
+- `info@austinzakat.org` was confirmed as the real general-questions inbox.
+- GAMRC's full roster is nine partner masajid (Nueces Mosque, ICGA, ICRR, ICBC, ICLT, GIC, QCIC,
+  Al-Noor MCC, ICHC); only the five with a verified public homepage are linked directly in
+  `src/data/masajid.ts`.
+- GAMRC has no EIN of its own — per its own FAQ, it's a unified committee of the local masajid,
+  not a separate 501(c)(3).
 
 ## Project structure
 
@@ -56,6 +60,7 @@ public search results about GAMRC and its partner masajid. Please double-check b
 src/
   layouts/BaseLayout.astro   # shared <head>, header, footer
   components/                # Nav, Footer, cards, buttons, zakat calculator, etc.
+  data/masajid.ts             # shared partner masjid directory + donation links
   pages/                      # one file per route
     programs/nueces-mosque.astro
 public/
