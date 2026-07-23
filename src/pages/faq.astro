@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Button from "../components/Button.astro";
+
+const faqs = [
+  {
+    q: "Is GAMRC an organization with its own EIN number?",
+    a: "No — GAMRC is not a standalone organization. It's a unified committee of the local Austin masajid, and doesn't hold a separate EIN.",
+  },
+  {
+    q: "Can I write a check to GAMRC?",
+    a: "Yes. Checks are made payable to ICGA and mailed to 5110 Manor Rd, Austin, TX 78723. Contact us if you'd like more details.",
+  },
+  {
+    q: "Is my zakat used for operations or buildings?",
+    a: "No. Zakat is spent only on the 8 categories described in the Quran, all of which relate to people directly — not overhead or construction.",
+  },
+  {
+    q: "Can zakat go toward education or job-skills training?",
+    a: "Yes, with the recipient's permission, zakat can go toward Islamic school, certifications, or job-skills classes.",
+  },
+  {
+    q: "Do I have to give zakat only during Ramadan?",
+    a: "No. Zakat is a fardh (obligatory) act of worship and should be given once a year based on your own nisab date, not tied to Ramadan.",
+  },
+  {
+    q: "How are Muslims and non-Muslims helped differently?",
+    a: "Muslims are helped through zakat. Non-Muslims are helped through voluntary charity (sadaqah) — GAMRC serves everyone in the community, regardless of faith.",
+  },
+  {
+    q: "How do you determine eligibility for assistance?",
+    a: "Case by case. Factors like language skills and job options vary, and everyone receiving ongoing support is regularly re-evaluated.",
+  },
+  {
+    q: "Who receives Zakat al-Fitr?",
+    a: "Those eligible for zakat al-maal also receive zakat al-Fitr.",
+  },
+  {
+    q: "Does GAMRC collect and distribute Qurbani (Udhiya) meat?",
+    a: "Yes, coordinated through each mosque's finance team around Eid al-Adha. For in-kind donations, items must be in excellent condition.",
+  },
+  {
+    q: "Can I donate a vehicle and get a tax receipt?",
+    a: "Yes, if the vehicle is in excellent working condition. Donations over $500 require your SSN for the tax form. When you contact us, please include the car's make, model, year, VIN, and mileage.",
+  },
+];
+---
+
+<BaseLayout
+  title="FAQ"
+  description="Common questions about GAMRC, zakat eligibility, donations, and how the Greater Austin Muslim Relief Committee operates."
+>
+  <PageHero eyebrow="FAQ" title="Common questions" description="Answers to the questions we hear most from donors and families we serve." />
+
+  <section class="mx-auto max-w-3xl px-5 py-20">
+    <div class="divide-y divide-emerald-900/10 rounded-2xl border border-emerald-900/8 bg-white shadow-sm shadow-emerald-950/5">
+      {faqs.map((item) => (
+        <div class="p-6">
+          <h3 class="font-display text-base tracking-wide text-emerald-950">{item.q}</h3>
+          <p class="prose-body mt-2 text-sm leading-relaxed text-emerald-950/70">{item.a}</p>
+        </div>
+      ))}
+    </div>
+    <div class="mt-10 text-center">
+      <Button href="/contact" variant="ghost">Still have a question?</Button>
+    </div>
+  </section>
+</BaseLayout>

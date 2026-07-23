@@ -1,18 +1,14 @@
 ---
-const year = new Date().getFullYear();
+import { partnerMasajid, otherPartnerMasajid } from "../data/masajid";
 
-const partners = [
-  { name: "Islamic Center of Greater Austin (ICGA)", href: "https://austinmosque.org/" },
-  { name: "Nueces Mosque", href: "https://www.nuecesmosque.com/" },
-  { name: "Islamic Center of Brushy Creek (ICBC)", href: "https://icbrushycreek.org/" },
-  { name: "Islamic Center of Round Rock (ICRR)", href: "https://roundrockmasjid.org/" },
-];
+const year = new Date().getFullYear();
 
 const links = [
   { href: "/what-we-do", label: "What We Do" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/apply-for-help", label: "Apply for Help" },
   { href: "/pay-zakat", label: "Pay Zakat" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 ---
@@ -41,21 +37,10 @@ const links = [
           Greater Austin Muslim Relief Committee
         </p>
         <p class="prose-body mt-4 max-w-md text-sm leading-relaxed text-emerald-100/80">
-          A unified Zakat committee coordinating charitable relief across Austin, Round Rock,
-          Cedar Park, Pflugerville, Georgetown, Leander, and Lake Travis since 2014 &mdash; working
-          hand in hand with local masajid so zakat given here stays here.
+          GAMRC is not a standalone nonprofit &mdash; it's a unified committee of nine Austin-area
+          masajid. Keep your zakat local: give directly through your masjid and it stays in the
+          Greater Austin community.
         </p>
-        <a
-          href="https://www.facebook.com/donate/906668713698002/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-5 inline-flex items-center gap-2 rounded-full border border-gold-300/40 px-4 py-2 text-sm font-medium text-gold-200 transition hover:border-gold-300 hover:bg-white/5"
-        >
-          Donate on Facebook
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </a>
       </div>
 
       <div>
@@ -70,13 +55,14 @@ const links = [
       <div>
         <h3 class="text-sm font-semibold uppercase tracking-wider text-gold-300/90">Partner Masajid</h3>
         <ul class="mt-4 space-y-2.5 text-sm">
-          {partners.map((p) => (
+          {partnerMasajid.map((p) => (
             <li>
               <a href={p.href} target="_blank" rel="noopener noreferrer" class="text-emerald-100/80 transition hover:text-white">
                 {p.name}
               </a>
             </li>
           ))}
+          <li class="text-emerald-100/60">{otherPartnerMasajid.join(" • ")}</li>
         </ul>
       </div>
     </div>
