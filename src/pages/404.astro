@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import GeometricPattern from "../components/GeometricPattern.astro";
+---
+
+<BaseLayout title="Page Not Found" description="This page could not be found.">
+  <section class="relative flex min-h-[60vh] items-center justify-center overflow-hidden bg-emerald-950 text-white">
+    <GeometricPattern class="absolute inset-0 h-full w-full text-gold-200" opacity={0.1} tile={72} />
+    <div class="relative mx-auto max-w-lg px-5 py-24 text-center">
+      <p class="font-display text-6xl text-gold-300">404</p>
+      <h1 class="mt-4 font-display text-2xl tracking-wide">This page has wandered off</h1>
+      <p class="prose-body mt-4 text-emerald-50/80">
+        The page you're looking for doesn't exist. Let's get you back on track.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <Button href="/" variant="secondary">Back Home</Button>
+        <Button href="/contact" variant="ghost" class="border-white/25 text-white hover:bg-white/10">Contact Us</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

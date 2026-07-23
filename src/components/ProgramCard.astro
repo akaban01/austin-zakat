@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: "home" | "basket" | "heart" | "book" | "moon" | "coin" | "family" | "mosque";
+}
+
+const { title, description, icon } = Astro.props;
+
+const icons: Record<Props["icon"], string> = {
+  home: "M3 11.5 12 4l9 7.5M5 10v9h14v-9",
+  basket: "M4 9h16l-1.5 10.5a2 2 0 0 1-2 1.5H7.5a2 2 0 0 1-2-1.5L4 9ZM8 9V7a4 4 0 0 1 8 0v2",
+  heart: "M12 20.5s-7.5-4.6-10-9.4C.5 7.5 2.4 4 5.8 4c2 0 3.4 1 6.2 3.8C14.8 5 16.2 4 18.2 4c3.4 0 5.3 3.5 3.8 7.1-2.5 4.8-10 9.4-10 9.4Z",
+  book: "M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15.5A2.5 2.5 0 0 0 17.5 21H4V5.5ZM4 5.5A2.5 2.5 0 0 0 6.5 8H20",
+  moon: "M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z",
+  coin: "M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9ZM12 7v10M9 9.5h4a1.8 1.8 0 0 1 0 3.6H10a1.8 1.8 0 0 0 0 3.6h5",
+  family: "M8 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM2 21v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1M15.5 21v-1a5 5 0 0 0-3-4.6",
+  mosque: "M4 21v-7l3-2.5V9a5 5 0 0 1 10 0v2.5l3 2.5v7M4 21h16M9 21v-5a3 3 0 0 1 6 0v5M12 6V3m-2 2h4",
+};
+---
+
+<div class="group relative overflow-hidden rounded-2xl border border-emerald-900/8 bg-white/70 p-6 shadow-sm shadow-emerald-950/5 transition hover:-translate-y-0.5 hover:shadow-md hover:shadow-emerald-950/10">
+  <div class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 transition group-hover:bg-emerald-700 group-hover:text-gold-200">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+      <path d={icons[icon]} stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+  <h3 class="font-display text-lg tracking-wide text-emerald-950">{title}</h3>
+  <p class="prose-body mt-2 text-sm leading-relaxed text-emerald-950/70">{description}</p>
+</div>

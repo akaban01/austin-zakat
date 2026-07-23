@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Button from "../components/Button.astro";
+
+const programs = [
+  {
+    icon: "home",
+    title: "Rent & Utilities Assistance",
+    description:
+      "Facing an eviction notice or a shutoff letter is one of the most stressful moments a family can go through. We help cover rent and electricity bills so households can stay housed and keep the lights on while they get back on their feet.",
+  },
+  {
+    icon: "coin",
+    title: "Urgent Debts & Medical Expenses",
+    description:
+      "In select cases, we help with urgent debts and medical expenses that a family cannot absorb on their own — bridging the gap between a health crisis and financial stability.",
+  },
+  {
+    icon: "basket",
+    title: "Food Assistance & Ramadan Baskets",
+    description:
+      "Grocery support is available year-round, and we distribute food baskets twice during the blessed month of Ramadan so no family in our community goes without during the month of fasting.",
+  },
+  {
+    icon: "family",
+    title: "Widows, Orphans & Single Mothers",
+    description:
+      "We provide dedicated, ongoing support to widows, orphans, and single mothers — including families navigating domestic violence — recognizing that these households often need consistent, longer-term care rather than a one-time gift.",
+  },
+  {
+    icon: "book",
+    title: "Education & Tutoring",
+    description:
+      "A team of ten to twelve volunteer tutors provides educational support to students who are falling behind, giving kids from less fortunate households the extra help they need to succeed in school.",
+  },
+  {
+    icon: "mosque",
+    title: "Refugee Children's Qur'an & Education Program",
+    description:
+      "We operate a dedicated space in a low-income apartment complex where refugee children gather for Qur'an classes and educational programs, building both faith and academic foundations close to home.",
+  },
+  {
+    icon: "moon",
+    title: "Zakat al-Fitr Collection & Distribution",
+    description:
+      "Before Eid al-Fitr prayers each year, we collect and distribute Zakat al-Fitr on behalf of the community, making sure every household can celebrate Eid with dignity.",
+  },
+  {
+    icon: "heart",
+    title: "Eid al-Adha Udhiya Distribution",
+    description:
+      "In coordination with GAMRC, Udhiya (Qurbani) meat is distributed to families in need around Eid al-Adha, sharing in the blessing of the sacrifice with those who need it most.",
+  },
+];
+---
+
+<BaseLayout
+  title="What We Do"
+  description="Explore the programs GAMRC runs across Greater Austin: rent and utility relief, food assistance, education, refugee support, and seasonal Zakat al-Fitr and Udhiya distribution."
+>
+  <PageHero
+    eyebrow="What We Do"
+    title="Zakat put to work, close to home"
+    description="GAMRC coordinates a wide range of relief programs with our partner masajid — meeting urgent needs today while building longer-term support for the families who need it most."
+  />
+
+  <section class="mx-auto max-w-6xl px-5 py-20">
+    <div class="grid gap-6 sm:grid-cols-2">
+      {programs.map((p) => (
+        <div class="rounded-2xl border border-emerald-900/8 bg-white/70 p-7 shadow-sm shadow-emerald-950/5">
+          <h2 class="font-display text-xl tracking-wide text-emerald-950">{p.title}</h2>
+          <p class="prose-body mt-3 text-sm leading-relaxed text-emerald-950/70">{p.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-emerald-50/60 py-20">
+    <div class="mx-auto max-w-4xl px-5 text-center">
+      <SectionHeading eyebrow="Serving Together" title="One committee, many masajid" align="center" />
+      <p class="prose-body mx-auto mt-5 max-w-2xl text-emerald-950/70">
+        GAMRC coordinates with the Islamic Center of Greater Austin, Nueces Mosque, the Islamic
+        Center of Brushy Creek, and the Islamic Center of Round Rock, reaching families across
+        Austin, Round Rock, Cedar Park, Pflugerville, Georgetown, Leander, and the Lake Travis
+        area — because our zakat is stronger when we pool it together.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button href="/apply-for-help">Apply for Help</Button>
+        <Button href="/pay-zakat" variant="ghost">Pay Zakat</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

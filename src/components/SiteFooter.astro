@@ -1,0 +1,89 @@
+---
+const year = new Date().getFullYear();
+
+const partners = [
+  { name: "Islamic Center of Greater Austin (ICGA)", href: "https://austinmosque.org/" },
+  { name: "Nueces Mosque", href: "https://www.nuecesmosque.com/" },
+  { name: "Islamic Center of Brushy Creek (ICBC)", href: "https://icbrushycreek.org/" },
+  { name: "Islamic Center of Round Rock (ICRR)", href: "https://roundrockmasjid.org/" },
+];
+
+const links = [
+  { href: "/what-we-do", label: "What We Do" },
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/apply-for-help", label: "Apply for Help" },
+  { href: "/pay-zakat", label: "Pay Zakat" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<footer class="relative overflow-hidden bg-emerald-950 text-emerald-50">
+  <div class="pointer-events-none absolute inset-0 opacity-40">
+    <div class="h-full w-full text-emerald-300/20">
+      <svg class="h-full w-full" aria-hidden="true">
+        <defs>
+          <pattern id="footer-pattern" width="64" height="64" patternUnits="userSpaceOnUse">
+            <g fill="none" stroke="currentColor" stroke-width="1" opacity="0.5">
+              <path d="M32 4 56 24 60 32 56 40 32 60 8 40 4 32 8 24 Z"></path>
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#footer-pattern)"></rect>
+      </svg>
+    </div>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-5 py-14">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div class="md:col-span-2">
+        <span class="font-display text-xl tracking-wide text-white">Austin Zakat</span>
+        <p class="mt-1 text-sm uppercase tracking-[0.18em] text-gold-300/80">
+          Greater Austin Muslim Relief Committee
+        </p>
+        <p class="prose-body mt-4 max-w-md text-sm leading-relaxed text-emerald-100/80">
+          A unified Zakat committee coordinating charitable relief across Austin, Round Rock,
+          Cedar Park, Pflugerville, Georgetown, Leander, and Lake Travis since 2014 &mdash; working
+          hand in hand with local masajid so zakat given here stays here.
+        </p>
+        <a
+          href="https://www.facebook.com/donate/906668713698002/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-5 inline-flex items-center gap-2 rounded-full border border-gold-300/40 px-4 py-2 text-sm font-medium text-gold-200 transition hover:border-gold-300 hover:bg-white/5"
+        >
+          Donate on Facebook
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-gold-300/90">Quick Links</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          {links.map((l) => (
+            <li><a href={l.href} class="text-emerald-100/80 transition hover:text-white">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-gold-300/90">Partner Masajid</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          {partners.map((p) => (
+            <li>
+              <a href={p.href} target="_blank" rel="noopener noreferrer" class="text-emerald-100/80 transition hover:text-white">
+                {p.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-emerald-100/60 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {year} Austin Zakat &middot; Greater Austin Muslim Relief Committee. All rights reserved.</p>
+      <p>Zakat collected and distributed locally, in coordination with Greater Austin masajid.</p>
+    </div>
+  </div>
+</footer>

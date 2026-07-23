@@ -1,0 +1,83 @@
+---
+const nav = [
+  { href: "/what-we-do", label: "What We Do" },
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/apply-for-help", label: "Apply for Help" },
+  { href: "/programs/nueces-mosque", label: "Nueces Mosque" },
+  { href: "/contact", label: "Contact" },
+];
+
+const path = new URL(Astro.request.url).pathname;
+---
+
+<header class="sticky top-0 z-50 border-b border-emerald-900/10 bg-cream/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
+    <a href="/" class="flex items-center gap-3">
+      <span class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-700 text-gold-200">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M12 2 14 8 20 8 15.5 12 17.5 18 12 14 6.5 18 8.5 12 4 8 10 8 Z" stroke-linejoin="round" />
+        </svg>
+      </span>
+      <span class="leading-tight">
+        <span class="block font-display text-lg tracking-wide text-emerald-900">Austin Zakat</span>
+        <span class="block text-[11px] uppercase tracking-[0.18em] text-emerald-700/70">GAMRC</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "text-sm font-medium text-emerald-900/80 transition hover:text-emerald-700",
+            { "text-emerald-700 underline decoration-gold-400 decoration-2 underline-offset-8": path === item.href },
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href="/pay-zakat"
+        class="hidden rounded-full bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-emerald-900/20 transition hover:bg-emerald-600 sm:inline-block"
+      >
+        Pay Zakat
+      </a>
+      <button
+        id="menu-toggle"
+        type="button"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-emerald-900/15 text-emerald-900 md:hidden"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-menu" class="hidden flex-col gap-1 border-t border-emerald-900/10 bg-cream px-5 py-3 md:hidden">
+    {nav.map((item) => (
+      <a href={item.href} class="rounded-lg px-3 py-2.5 text-sm font-medium text-emerald-900/85 hover:bg-emerald-50">
+        {item.label}
+      </a>
+    ))}
+    <a href="/pay-zakat" class="mt-1 rounded-lg bg-emerald-700 px-3 py-2.5 text-center text-sm font-semibold text-white">
+      Pay Zakat
+    </a>
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    const isOpen = menu?.classList.toggle("flex");
+    menu?.classList.toggle("hidden");
+    btn.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  });
+</script>
