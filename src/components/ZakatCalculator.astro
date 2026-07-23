@@ -1,0 +1,134 @@
+---
+---
+
+<div class="rounded-3xl border border-emerald-900/8 bg-white p-6 shadow-sm shadow-emerald-950/5 sm:p-9">
+  <form id="zakat-form" class="grid gap-6">
+    <div class="grid gap-5 sm:grid-cols-2">
+      <label class="block">
+        <span class="text-sm font-medium text-emerald-950/80">Cash on hand & in bank ($)</span>
+        <input type="number" min="0" step="0.01" name="cash" class="zakat-input" placeholder="0.00" />
+      </label>
+      <label class="block">
+        <span class="text-sm font-medium text-emerald-950/80">Gold & silver value ($)</span>
+        <input type="number" min="0" step="0.01" name="metals" class="zakat-input" placeholder="0.00" />
+      </label>
+      <label class="block">
+        <span class="text-sm font-medium text-emerald-950/80">Investments & business assets ($)</span>
+        <input type="number" min="0" step="0.01" name="investments" class="zakat-input" placeholder="0.00" />
+      </label>
+      <label class="block">
+        <span class="text-sm font-medium text-emerald-950/80">Money owed to you ($)</span>
+        <input type="number" min="0" step="0.01" name="receivables" class="zakat-input" placeholder="0.00" />
+      </label>
+      <label class="block sm:col-span-2">
+        <span class="text-sm font-medium text-emerald-950/80">Debts due now (subtracted) ($)</span>
+        <input type="number" min="0" step="0.01" name="debts" class="zakat-input" placeholder="0.00" />
+      </label>
+    </div>
+
+    <div class="rounded-2xl bg-emerald-50/70 p-4">
+      <label class="block">
+        <span class="text-sm font-medium text-emerald-950/80">Current silver price, per gram ($)</span>
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          name="silverPrice"
+          class="zakat-input"
+          placeholder="e.g. 0.95"
+        />
+      </label>
+      <p class="mt-2 text-xs leading-relaxed text-emerald-950/60">
+        Nisab (the minimum threshold for zakat) is set at 612.36 grams of silver, the more
+        cautious of the two traditional standards. Enter today's silver price to calculate your
+        exact threshold, or check a live price before submitting.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-4">
+      <button
+        type="submit"
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-700 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-emerald-900/20 transition hover:bg-emerald-600"
+      >
+        Calculate Zakat
+      </button>
+      <button
+        type="reset"
+        class="inline-flex items-center justify-center gap-2 rounded-full border border-emerald-900/15 px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-50"
+      >
+        Reset
+      </button>
+    </div>
+
+    <div id="zakat-result" class="hidden rounded-2xl border-2 border-dashed border-gold-400/60 bg-gold-50/60 p-6" role="status">
+      <p class="text-sm font-medium uppercase tracking-wide text-gold-700">Result</p>
+      <p id="zakat-result-headline" class="mt-1 font-display text-2xl text-emerald-950"></p>
+      <p id="zakat-result-detail" class="mt-2 text-sm leading-relaxed text-emerald-950/70"></p>
+    </div>
+  </form>
+</div>
+
+<style>
+  .zakat-input {
+    margin-top: 0.375rem;
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-emerald-900) 15%, transparent);
+    background-color: white;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9rem;
+    color: var(--color-ink);
+  }
+  .zakat-input:focus {
+    outline: 2px solid var(--color-emerald-400);
+    outline-offset: 1px;
+  }
+</style>
+
+<script>
+  const NISAB_GRAMS_SILVER = 612.36;
+  const ZAKAT_RATE = 0.025;
+
+  const form = document.getElementById("zakat-form") as HTMLFormElement | null;
+  const resultBox = document.getElementById("zakat-result");
+  const headline = document.getElementById("zakat-result-headline");
+  const detail = document.getElementById("zakat-result-detail");
+
+  const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const num = (key: string) => Number(data.get(key)) || 0;
+
+    const assets = num("cash") + num("metals") + num("investments") + num("receivables");
+    const total = Math.max(assets - num("debts"), 0);
+    const silverPrice = num("silverPrice");
+    const nisab = silverPrice > 0 ? NISAB_GRAMS_SILVER * silverPrice : 0;
+
+    resultBox?.classList.remove("hidden");
+
+    if (silverPrice <= 0) {
+      if (headline) headline.textContent = currency.format(total) + " in zakatable wealth";
+      if (detail)
+        detail.textContent =
+          "Enter today's silver price above to see whether you've reached the nisab threshold and how much zakat is due.";
+      return;
+    }
+
+    if (total >= nisab) {
+      const due = total * ZAKAT_RATE;
+      if (headline) headline.textContent = currency.format(due) + " is due";
+      if (detail)
+        detail.textContent = `Your zakatable wealth of ${currency.format(total)} is at or above the nisab of ${currency.format(
+          nisab,
+        )}, so 2.5% is due. This is an estimate — please consult a knowledgeable scholar for your specific situation.`;
+    } else {
+      if (headline) headline.textContent = "No zakat is due yet";
+      if (detail)
+        detail.textContent = `Your zakatable wealth of ${currency.format(total)} is below the nisab of ${currency.format(
+          nisab,
+        )}. Zakat becomes due once your wealth meets or exceeds this threshold for one full lunar year.`;
+    }
+  });
+</script>

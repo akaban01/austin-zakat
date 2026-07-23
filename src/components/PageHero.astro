@@ -1,0 +1,22 @@
+---
+import GeometricPattern from "./GeometricPattern.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+}
+
+const { eyebrow, title, description } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-emerald-950 text-white">
+  <GeometricPattern class="absolute inset-0 h-full w-full text-gold-200" opacity={0.1} tile={72} />
+  <div class="relative mx-auto max-w-4xl px-5 py-16 sm:py-20">
+    <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-gold-300/30 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-200">
+      {eyebrow}
+    </p>
+    <h1 class="font-display text-4xl leading-tight tracking-wide sm:text-5xl">{title}</h1>
+    <p class="prose-body mt-5 max-w-2xl text-lg leading-relaxed text-emerald-50/85">{description}</p>
+  </div>
+</section>

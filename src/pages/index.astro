@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ProgramCard from "../components/ProgramCard.astro";
+import Button from "../components/Button.astro";
+import GeometricPattern from "../components/GeometricPattern.astro";
+
+const stats = [
+  { value: "2014", label: "Coordinating zakat locally since" },
+  { value: "4+", label: "Partner masajid across Greater Austin" },
+  { value: "10+", label: "Cities & communities served" },
+  { value: "100%", label: "Of zakat stays in Central Texas" },
+];
+
+const programs = [
+  {
+    icon: "home" as const,
+    title: "Rent & Utilities Relief",
+    description:
+      "Emergency support for families facing eviction or shutoff notices — helping cover rent, electricity, and other essential bills.",
+  },
+  {
+    icon: "basket" as const,
+    title: "Food & Ramadan Baskets",
+    description:
+      "Grocery assistance year-round, plus food baskets distributed twice during the blessed month of Ramadan.",
+  },
+  {
+    icon: "family" as const,
+    title: "Widows, Orphans & Single Moms",
+    description:
+      "Ongoing support for households navigating domestic violence, widowhood, or single parenthood.",
+  },
+  {
+    icon: "book" as const,
+    title: "Education & Tutoring",
+    description:
+      "A dedicated team of volunteer tutors provides educational support to students who need extra help.",
+  },
+  {
+    icon: "moon" as const,
+    title: "Zakat al-Fitr & Eid Programs",
+    description:
+      "Collecting and distributing Zakat al-Fitr before Eid prayers, and coordinating Udhiya distribution for Eid al-Adha.",
+  },
+  {
+    icon: "mosque" as const,
+    title: "Refugee Children's Program",
+    description:
+      "A dedicated space in a low-income apartment complex where refugee children attend Qur'an classes and educational programs.",
+  },
+];
+
+const steps = [
+  {
+    title: "The community gives zakat",
+    description: "Muslims across Greater Austin contribute zakat, sadaqah, and Zakat al-Fitr directly to the committee.",
+  },
+  {
+    title: "Partner masajid review applications",
+    description: "Volunteers at each affiliated masjid receive and vet requests for help from families in their community.",
+  },
+  {
+    title: "Funds reach families quickly",
+    description: "GAMRC coordinates distribution so rent, bills, food, and medical needs are met without delay.",
+  },
+];
+---
+
+<BaseLayout
+  title="Local Zakat for Greater Austin"
+  description="Austin Zakat (GAMRC) is a unified Zakat committee coordinating charitable relief across Greater Austin since 2014, working with local masajid so zakat given here stays here."
+>
+  <section class="relative overflow-hidden bg-emerald-950 text-white">
+    <GeometricPattern class="absolute inset-0 h-full w-full text-gold-200" opacity={0.12} tile={80} />
+    <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-emerald-700/40 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-gold-400/20 blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-6xl px-5 py-24 sm:py-28">
+      <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-gold-300/30 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-200">
+        Greater Austin Muslim Relief Committee
+      </p>
+      <h1 class="max-w-3xl font-display text-4xl leading-[1.1] tracking-wide sm:text-5xl lg:text-6xl">
+        Zakat given locally, delivered locally.
+      </h1>
+      <p class="prose-body mt-6 max-w-xl text-lg leading-relaxed text-emerald-50/85">
+        GAMRC unites masajid across Austin, Round Rock, Cedar Park, Pflugerville, Georgetown,
+        Leander, and Lake Travis to collect and distribute zakat where our community needs it
+        most &mdash; rent, food, medical bills, and a hand up in hard times.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <Button href="/pay-zakat" variant="secondary">Pay Zakat</Button>
+        <Button href="/apply-for-help" variant="ghost" class="border-white/25 text-white hover:bg-white/10">
+          Apply for Help
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-emerald-900/10 bg-sand/60">
+    <div class="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-5 py-10 sm:grid-cols-4">
+      {stats.map((s) => (
+        <div class="text-center sm:text-left">
+          <p class="font-display text-3xl text-emerald-800">{s.value}</p>
+          <p class="mt-1 text-xs leading-snug text-emerald-950/60">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 py-20">
+    <SectionHeading eyebrow="What We Do" title="Support that meets real, urgent needs" align="left" />
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {programs.map((p) => <ProgramCard {...p} />)}
+    </div>
+    <div class="mt-10">
+      <Button href="/what-we-do" variant="ghost">See all programs</Button>
+    </div>
+  </section>
+
+  <section class="bg-emerald-50/60 py-20">
+    <div class="mx-auto max-w-6xl px-5">
+      <SectionHeading eyebrow="How It Works" title="From your zakat to their doorstep" align="left" />
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
+        {steps.map((step, i) => (
+          <div class="relative rounded-2xl bg-white p-6 shadow-sm shadow-emerald-950/5">
+            <span class="font-display text-4xl text-gold-400/70">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="mt-3 font-display text-lg tracking-wide text-emerald-950">{step.title}</h3>
+            <p class="prose-body mt-2 text-sm leading-relaxed text-emerald-950/70">{step.description}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10">
+        <Button href="/how-it-works" variant="ghost">Learn more about our process</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative overflow-hidden py-20">
+    <div class="mx-auto max-w-6xl px-5">
+      <div class="relative overflow-hidden rounded-3xl bg-emerald-800 px-6 py-14 text-center text-white sm:px-16">
+        <GeometricPattern class="absolute inset-0 h-full w-full text-gold-200" opacity={0.1} tile={64} />
+        <div class="relative">
+          <h2 class="font-display text-3xl tracking-wide sm:text-4xl">Every masjid, one committee, one mission.</h2>
+          <p class="prose-body mx-auto mt-4 max-w-xl text-emerald-50/85">
+            Whether you're ready to give or you need a hand, your local masjid is your first
+            step. Together we make sure zakat reaches our neighbors quickly and with dignity.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <Button href="/pay-zakat" variant="secondary">Pay Zakat</Button>
+            <Button href="/contact" variant="ghost" class="border-white/25 text-white hover:bg-white/10">
+              Get in Touch
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Button from "../components/Button.astro";
+
+const masajid = [
+  { name: "Islamic Center of Greater Austin (ICGA)", href: "https://austinmosque.org/services/financial-assistance/" },
+  { name: "Nueces Mosque", href: "https://www.nuecesmosque.com/nueces-services/humanitarian-assistance" },
+  { name: "Islamic Center of Brushy Creek (ICBC)", href: "https://icbrushycreek.org/programs/community/" },
+  { name: "Islamic Center of Round Rock (ICRR)", href: "https://roundrockmasjid.org/" },
+];
+
+const whatToExpect = [
+  {
+    title: "Reach out to your nearest partner masjid",
+    description:
+      "Applications are received and reviewed by volunteer coordinators at the partner masjid closest to you, listed below. They know their community and can move quickly.",
+  },
+  {
+    title: "Share your situation",
+    description:
+      "Be ready to briefly describe what you're facing — rent, utilities, food, a medical bill, or another urgent need — so your request can be routed appropriately.",
+  },
+  {
+    title: "A coordinator follows up",
+    description:
+      "A volunteer will follow up to verify your request and determine what support is available, with discretion and respect for your privacy.",
+  },
+  {
+    title: "Assistance is arranged directly",
+    description:
+      "Whenever possible, funds are sent directly to the landlord, utility company, or provider — so help reaches the actual need.",
+  },
+];
+---
+
+<BaseLayout
+  title="Apply for Help"
+  description="If you or your family need help with rent, utilities, food, or another urgent need, reach out to a GAMRC partner masjid in Greater Austin to start your application."
+>
+  <PageHero
+    eyebrow="Apply for Help"
+    title="You don't have to face this alone"
+    description="If your family is struggling with rent, utilities, food, or an urgent medical need, GAMRC and our partner masajid are here to help — with dignity and discretion."
+  />
+
+  <section class="mx-auto max-w-4xl px-5 py-20">
+    <SectionHeading eyebrow="What to Expect" title="How an application works" />
+    <div class="mt-8 space-y-6">
+      {whatToExpect.map((item, i) => (
+        <div class="flex gap-5">
+          <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-700 text-sm font-semibold text-gold-100">
+            {i + 1}
+          </span>
+          <div>
+            <h3 class="font-display text-lg tracking-wide text-emerald-950">{item.title}</h3>
+            <p class="prose-body mt-1 text-sm leading-relaxed text-emerald-950/70">{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-emerald-50/60 py-20">
+    <div class="mx-auto max-w-4xl px-5">
+      <SectionHeading eyebrow="Get Started" title="Contact a partner masjid near you" />
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {masajid.map((m) => (
+          <a
+            href={m.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-between rounded-2xl border border-emerald-900/8 bg-white p-5 shadow-sm shadow-emerald-950/5 transition hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <span class="font-medium text-emerald-950">{m.name}</span>
+            <svg class="h-4 w-4 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        ))}
+      </div>
+      <p class="prose-body mt-8 text-sm text-emerald-950/60">
+        Not sure which masjid to reach out to, or don't see one near you? Send us a message on
+        our <a href="/contact" class="font-medium text-emerald-700 underline underline-offset-2">Contact page</a>
+        and we'll help point you in the right direction.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

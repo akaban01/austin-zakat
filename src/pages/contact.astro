@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const masajid = [
+  { name: "Islamic Center of Greater Austin (ICGA)", href: "https://austinmosque.org/" },
+  { name: "Nueces Mosque", href: "https://www.nuecesmosque.com/" },
+  { name: "Islamic Center of Brushy Creek (ICBC)", href: "https://icbrushycreek.org/" },
+  { name: "Islamic Center of Round Rock (ICRR)", href: "https://roundrockmasjid.org/" },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with GAMRC — reach out through a partner masjid near you or send a general question about zakat, donations, or assistance."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="We're here to help"
+    description="For assistance requests, please reach out to the partner masjid nearest you. For general questions about zakat, donations, or our programs, use the options below."
+  />
+
+  <section class="mx-auto max-w-4xl px-5 py-20">
+    <SectionHeading eyebrow="General Questions" title="Reach the committee" />
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      <a
+        href="mailto:info@austinzakat.org"
+        class="flex items-start gap-4 rounded-2xl border border-emerald-900/8 bg-white p-6 shadow-sm shadow-emerald-950/5 transition hover:-translate-y-0.5 hover:shadow-md"
+      >
+        <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M4 6h16v12H4z" stroke-linejoin="round" />
+            <path d="m4 7 8 6 8-6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span>
+          <span class="block font-display text-lg tracking-wide text-emerald-950">Email Us</span>
+          <span class="mt-1 block text-sm text-emerald-950/70">info@austinzakat.org</span>
+        </span>
+      </a>
+
+      <a
+        href="https://www.facebook.com/donate/906668713698002/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-start gap-4 rounded-2xl border border-emerald-900/8 bg-white p-6 shadow-sm shadow-emerald-950/5 transition hover:-translate-y-0.5 hover:shadow-md"
+      >
+        <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M15 8h-2a2 2 0 0 0-2 2v2H9v3h2v6h3v-6h2.2l.8-3H14v-1.5A.5.5 0 0 1 14.5 9H15Z" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span>
+          <span class="block font-display text-lg tracking-wide text-emerald-950">Facebook</span>
+          <span class="mt-1 block text-sm text-emerald-950/70">Message us or give online</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-emerald-50/60 py-20">
+    <div class="mx-auto max-w-4xl px-5">
+      <SectionHeading eyebrow="Requesting Assistance" title="Contact a partner masjid directly" />
+      <p class="prose-body mt-4 text-sm leading-relaxed text-emerald-950/70">
+        Applications for financial assistance are handled locally by our partner masajid. Reach
+        out to whichever is closest to you to begin.
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {masajid.map((m) => (
+          <a
+            href={m.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-between rounded-2xl border border-emerald-900/8 bg-white p-5 shadow-sm shadow-emerald-950/5 transition hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <span class="font-medium text-emerald-950">{m.name}</span>
+            <svg class="h-4 w-4 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

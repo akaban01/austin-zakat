@@ -1,0 +1,57 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  opacity?: number;
+  color?: string;
+  tile?: number;
+}
+
+const {
+  id = "az-star-pattern",
+  class: className = "",
+  opacity = 0.08,
+  color = "currentColor",
+  tile = 64,
+} = Astro.props;
+
+const half = tile / 2;
+---
+
+<svg
+  class={className}
+  aria-hidden="true"
+  focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="100%"
+  height="100%"
+>
+  <defs>
+    <pattern
+      id={id}
+      x="0"
+      y="0"
+      width={tile}
+      height={tile}
+      patternUnits="userSpaceOnUse"
+    >
+      <g fill="none" stroke={color} stroke-width="1" opacity={opacity}>
+        <path
+          d={`M${half} 4
+              L${tile - 8} ${half - 8}
+              L${tile - 4} ${half}
+              L${tile - 8} ${half + 8}
+              L${half} ${tile - 4}
+              L${8} ${half + 8}
+              L4 ${half}
+              L8 ${half - 8} Z`}
+        ></path>
+        <circle cx={half} cy={half} r={tile * 0.09}></circle>
+        <path
+          d={`M0 ${half} L${tile} ${half} M${half} 0 L${half} ${tile}`}
+        ></path>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill={`url(#${id})`}></rect>
+</svg>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import Button from "../../components/Button.astro";
+---
+
+<BaseLayout
+  title="Nueces Mosque Reconstruction"
+  description="Nueces Mosque has served Muslim students near the University of Texas at Austin for over 45 years and is expanding to meet the needs of a growing community."
+>
+  <PageHero
+    eyebrow="Project Spotlight"
+    title="Nueces Mosque Reconstruction"
+    description="For over 45 years, Nueces Mosque has served Muslim students and families near the University of Texas at Austin. Now it's being rebuilt and expanded to serve a growing community."
+  />
+
+  <section class="mx-auto max-w-4xl px-5 py-20">
+    <SectionHeading eyebrow="Why It Matters" title="A campus mosque, four decades in the making" />
+    <div class="prose-body mt-6 space-y-4 text-emerald-950/75 leading-relaxed">
+      <p>
+        Located near the University of Texas at Austin campus, Nueces Mosque has been a spiritual
+        home for Muslim students and the surrounding community for more than 45 years. As the
+        student population and greater Austin Muslim community have grown, the mosque has been
+        undergoing reconstruction and expansion to better serve the daily prayers, Friday
+        khutbahs, and community programs that depend on it.
+      </p>
+      <p>
+        As part of GAMRC's network of partner masajid, Nueces Mosque also plays a role in
+        distributing relief to families in need and hosting humanitarian assistance programs for
+        the surrounding community.
+      </p>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <Button href="https://www.nuecesmosque.com/" external>Visit Nueces Mosque</Button>
+      <Button href="/what-we-do" variant="ghost">See All Programs</Button>
+    </div>
+  </section>
+</BaseLayout>
